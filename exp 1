@@ -1,0 +1,116 @@
+// aim:implementing stack in C using array
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX 5
+
+char stack[MAX][100]; 
+int top = -1;
+
+void push() 
+{
+    if (top == MAX - 1) 
+    {
+        printf("Stack is full\n");
+        return;
+    }
+    char ent[100];
+    printf("Enter the element: ");
+    scanf("%99s", ent);
+    top++;
+    strcpy(stack[top], ent);
+}
+
+void pop() 
+{
+    if (top == -1) 
+    {
+        printf("Stack is empty.\n");
+        return;
+    }
+    top--;
+}
+
+void peek() 
+{
+    if (top == -1) 
+    {
+        printf("Stack is empty.\n");
+        return;
+    }
+    printf("The last top most element is %s\n", stack[top]);
+}
+
+void check() 
+{
+    if (top == MAX - 1) 
+    {
+        printf("Stack is full\n");
+    } else if (top == -1) 
+    {
+        printf("Stack is empty\n");
+    } else 
+    {
+        printf("Stack is neither full nor empty\n");
+    }
+}
+
+int main() 
+{
+    char ask[10];
+    printf("Do you want to start? (y/n): ");
+    scanf("%9s", ask);
+
+    while (ask[0] != 'n' && ask[0] != 'N') {
+        printf("Enter the number to perform that operation\n");
+        printf("1.Push\n");
+        printf("2.Pop\n");
+        printf("3.Peek\n");
+        printf("4.Check status\n");
+        printf("0.Terminate\n");
+
+        int op;
+        scanf("%d", &op);
+
+        switch (op) {
+            case 0:
+                printf("Thank you\n");
+                exit(0);
+            case 1:
+                push();
+                printf("Stack elements: ");
+                for (int i = 0; i <= top; i++) {
+                    printf("%s ", stack[i]);
+                }
+                printf("\n");
+                break;
+            case 2:
+                pop();
+                printf("Stack elements: ");
+                if (top == -1) {
+                    printf("Stack is empty");
+                } else {
+                    for (int i = 0; i <= top; i++) {
+                        printf("%s ", stack[i]);
+                    }
+                }
+                printf("\n");
+                break;
+            case 3:
+                peek();
+                break;
+            case 4:
+                check();
+                break;
+            default:
+                printf("Invalid operation\n");
+                break;
+        }
+
+        printf("Do you want to continue? (y/n): ");
+        scanf("%9s", ask);
+    }
+    printf("Thank you\n");
+    return 0;
+}
