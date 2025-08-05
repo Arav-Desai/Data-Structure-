@@ -1,0 +1,60 @@
+# aim; implementation of stack in python using array
+stack = []
+def push(stack):
+    if (len(stack) == 5):
+        print('stack is full')
+        return stack
+    ent = input('Énter the element: ')
+    stack = stack.append(ent)
+    return stack
+
+
+def pop(stack):
+    if len(stack) == 0:
+        print("Stack is empty.")
+        return stack
+    stack = stack.pop()
+    return stack
+
+
+def peek(stack):
+    if len(stack) == 0:
+        print("Stack is empty.")
+        return stack
+    return stack[-1]
+
+
+def check(stack):
+    if (len(stack) == 5):
+        return 5
+    elif (len(stack) == 0):
+        return -1
+
+
+ask = input('Do you want to start ?')
+while (ask != 'n' or ask != 'N'):
+    print('Enter the number to perform that operation')
+    print('1.Push')
+    print('2.Pop')
+    print('3.Peek')
+    print('4.check status')
+    print('0.terminate')
+    op = int(input())
+
+    if (op == 0):
+        exit('Thank you')
+    elif (op == 1):
+        push(stack)
+        print(stack)
+    elif (op == 2):
+        pop(stack)
+        print(stack)
+    elif (op == 3):
+        print('the last top most element is ', peek(stack))
+
+    elif (op == 4):
+        if (check(stack) == 5):
+            print('stack is full')
+        else:
+            print('stack is empty')
+    ask = input('do you want to continue?') 
